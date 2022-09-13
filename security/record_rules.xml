@@ -1,0 +1,12 @@
+<odoo>
+    <record id="rules_of_users_contract" model="ir.rule">
+        <field name="name">Users Rules</field>
+        <field name="model_id" ref="model_customer_contract"/>
+        <field name="groups" eval="[(4, ref('group_contract_users'))]"/>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+        <field name="perm_create" eval="False"/>
+    </record>
+</odoo>

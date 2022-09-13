@@ -1,0 +1,68 @@
+<odoo>
+    <record model="ir.ui.view" id="customer_contract_view_form">
+        <field name="name">customer.contact.form</field>
+        <field name="model">customer.contract</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                      <button string="Draft"  attrs="{'invisible' : [('state', '=', 'draft')]}" class="oe_highlight"
+                            name="button_draft" type="object"/>
+                    <button string="Confirmed" attrs="{'invisible' : [('state', '=', 'confirmed')]}" class="oe_highlight"
+                            name="button_confirmed" type="object"/>
+                    <button string="Cancelled"  attrs="{'invisible' : [('state', '=', 'cancelled')]}" class="oe_highlight"
+                            name="button_cancelled" type="object"/>
+                    <button string="Ended" attrs="{'invisible' : [('state', '=', 'ended')]}" class="oe_highlight"
+                            name="button_ended" type="object"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="customer"/>
+                    </group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                    <group>
+                        <field name="price"/>
+                        <field name="avg_day_price"/>
+                    </group>
+                    <group>
+                        <field name="last_change"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="customer_contract_view_tree" model="ir.ui.view">
+        <field name="name">customer.contract.tree</field>
+        <field name="model">customer.contract</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="customer"/>
+                <field name="start_date" optional="hide"/>
+                <field name="end_date" optional="hide"/>
+                <field name="price" optional="hide"/>
+                <field name="avg_day_price" optional="hide"/>
+                <field name="last_change" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="customer_contract_action" model="ir.actions.act_window">
+        <field name="name">customer.contract</field>
+        <field name="res_model">customer.contract</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+            id="customer_contract_menu_root"
+            name="Customer Contract"/>
+    <menuitem
+            parent="customer_contract_menu_root"
+            name="Customer Contract"
+            id="customer_contract_menu"
+            action="customer_contract_action"/>
+
+</odoo>

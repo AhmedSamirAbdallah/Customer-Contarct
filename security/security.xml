@@ -1,0 +1,8 @@
+<odoo>
+    <record id="group_contract_users" model="res.groups">
+        <field name="name">Contract Users</field>
+    </record>
+    <record id="group_contract_managers" model="res.groups">
+        <field name="name">Contract Managers</field>
+    </record>
+</odoo>

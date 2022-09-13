@@ -1,0 +1,14 @@
+<odoo>
+    <template id="report_sale_tempalate_modification" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@name='so_total_summary']" position="after">
+            <div class="col-6">
+                <strong>Printed By:</strong>
+                <p t-field="user.name"/>
+            </div>
+            <div class="col-6">
+                <strong>Printed at:</strong>
+                <p t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')" />
+            </div>
+        </xpath>
+    </template>
+</odoo>

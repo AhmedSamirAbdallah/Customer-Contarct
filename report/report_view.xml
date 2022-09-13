@@ -1,0 +1,85 @@
+<odoo>
+    <template id="customer_contract_report_temp">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="oe_structure">
+                        <div class="page">
+                            <h2>Customer Contract</h2>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-6">Customer:
+                                         <t t-esc="o.customer.name"/>
+                                    </div>
+                                    <div class="col-6">State:
+                                         <t t-esc="o.state"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">Start Date:
+                                         <t t-esc="o.start_date"/>
+                                    </div>
+                                    <div class="col-6">End Date:
+                                         <t t-esc="o.end_date"/>
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-6">Price:
+                                         <t t-esc="o.price"/>
+                                    </div>
+                                    <div class="col-6">Avg Price Date:
+                                         <t t-esc="o.avg_day_price"/>
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <div class="col-6">Printed By:
+                                         <t t-esc="user.name"/>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')" class="text-center"/>
+                            </div>
+                            <!--                            <table class="table table-bordered mb64">-->
+                            <!--                                <thead>-->
+                            <!--                                    <tr>-->
+                            <!--                                        <th>Customer</th>-->
+                            <!--                                        <th>State</th>-->
+                            <!--                                        <th>Start Date</th>-->
+                            <!--                                        <th>End Date</th>-->
+                            <!--                                        <th>Price</th>-->
+                            <!--                                        <th>Avg Day Price</th>-->
+                            <!--                                        <th>Last Modifier</th>-->
+                            <!--                                        <th>Printed By</th>-->
+                            <!--                                    </tr>-->
+                            <!--                                </thead>-->
+                            <!--                                <tbody>-->
+                            <!--                                    <td><div t-field="o.customer"/></td>-->
+                            <!--                                    <td><div t-field="o.state"/></td>-->
+                            <!--                                    <td><div t-field="o.start_date"/></td>-->
+                            <!--                                    <td><div t-field="o.end_date"/></td>-->
+                            <!--                                    <td><div t-field="o.price"/></td>-->
+                            <!--                                    <td><div t-field="o.avg_day_price"/></td>-->
+                            <!--                                    <td><div t-field="o.last_change"/></td>-->
+                            <!--                                    <td><div t-esc="user.name"/></td>-->
+                            <!--                                </tbody>-->
+                            <!--                            </table>-->
+                            <!--                            <div>-->
+                            <!--                                <div t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')" class="text-center"/>-->
+                            <!--                            </div>-->
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_customer_contract" model="ir.actions.report">
+        <field name="name">report</field>
+        <field name="model">customer.contract</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">itq_customer_contract.customer_contract_report_temp</field>
+        <field name="report_file">itq_customer_contract.customer_contract_report_temp</field>
+        <field name="binding_model_id" ref="model_customer_contract"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
